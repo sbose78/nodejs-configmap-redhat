@@ -30,7 +30,7 @@ objects:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    name: nodejs-configmap
+    name: nodejs-configmap-redhat
   spec: {}
 - apiVersion: v1
   kind: ImageStream
@@ -45,12 +45,12 @@ objects:
 - apiVersion: v1
   kind: BuildConfig
   metadata:
-    name: nodejs-configmap
+    name: nodejs-configmap-redhat
   spec:
     output:
       to:
         kind: ImageStreamTag
-        name: nodejs-configmap:latest
+        name: nodejs-configmap-redhat:latest
     postCommit: {}
     resources: {}
     source:
@@ -84,23 +84,23 @@ objects:
         targetPort: 8080
     type: ClusterIP
     selector:
-      project: nodejs-configmap
+      project: nodejs-configmap-redhat
       provider: nodeshift
   metadata:
-    name: nodejs-configmap
+    name: nodejs-configmap-redhat
     labels:
       provider: nodeshift
       expose: 'true'
-      project: nodejs-configmap
+      project: nodejs-configmap-redhat
       version: 1.0.0
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
-    name: nodejs-configmap
+    name: nodejs-configmap-redhat
     labels:
-      app: nodejs-configmap
+      app: nodejs-configmap-redhat
       provider: nodeshift
-      project: nodejs-configmap
+      project: nodejs-configmap-redhat
       version: 1.0.0
   spec:
     template:
@@ -118,8 +118,8 @@ objects:
                 scheme: HTTP
               initialDelaySeconds: 60
               periodSeconds: 30
-            image: nodejs-configmap
-            name: nodejs-configmap
+            image: nodejs-configmap-redhat
+            name: nodejs-configmap-redhat
             securityContext:
               privileged: false
             ports:
@@ -128,14 +128,14 @@ objects:
                 protocol: TCP
       metadata:
         labels:
-          app: nodejs-configmap
-          project: nodejs-configmap
+          app: nodejs-configmap-redhat
+          project: nodejs-configmap-redhat
           provider: nodeshift
           version: 1.0.0
     replicas: 1
     selector:
-      app: nodejs-configmap
-      project: nodejs-configmap
+      app: nodejs-configmap-redhat
+      project: nodejs-configmap-redhat
       provider: nodeshift
     triggers:
       - type: ConfigChange
@@ -143,21 +143,21 @@ objects:
         imageChangeParams:
           automatic: true
           containerNames:
-            - nodejs-configmap
+            - nodejs-configmap-redhat
           from:
             kind: ImageStreamTag
-            name: 'nodejs-configmap:latest'
+            name: 'nodejs-configmap-redhat:latest'
 - apiVersion: v1
   kind: Route
   spec:
     to:
       kind: Service
-      name: nodejs-configmap
+      name: nodejs-configmap-redhat
     port:
       targetPort: 8080
   metadata:
-    name: nodejs-configmap
+    name: nodejs-configmap-redhat
     labels:
       provider: nodeshift
-      project: nodejs-configmap
+      project: nodejs-configmap-redhat
       version: 1.0.0

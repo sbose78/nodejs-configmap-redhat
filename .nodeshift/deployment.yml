@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Deployment
 metadata:
-  name: nodejs-configmap
+  name: nodejs-configmap-redhat
 spec:
   template:
     spec:
