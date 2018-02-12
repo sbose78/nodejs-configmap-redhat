@@ -23,13 +23,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 // Setup logging
-const winston = require('winston');
-const logger = new (winston.Logger)({
-  transports: [
-    new (winston.transports.Console)({level: 'info'})
-  ]
-});
-
+const logger = require('winston');
 const app = express();
 
 // Health Check Middleware
@@ -73,10 +67,10 @@ setInterval(() => {
       message = config.message;
 
       // Set New log level
-      if (logger.transports.console.level !== config.level.toLowerCase()) {
+      if (logger.level !== config.level.toLowerCase()) {
         logger.info('New configuration retrieved: {}', config.message);
         logger.info('New log level: {}', config.level.toLowerCase());
-        logger.transports.console.level = config.level.toLowerCase();
+        logger.level = config.level.toLowerCase();
       }
     }
   }).catch((err) => {
