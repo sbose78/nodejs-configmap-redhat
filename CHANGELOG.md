@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/nodeshift-starters/nodejs-configmap-redhat/compare/v1.2.2...v1.2.3) (2018-11-09)
+
+
+### Bug Fixes
+
+* travis-ci should use npm install instead of npm ci ([2b462b6](https://github.com/nodeshift-starters/nodejs-configmap-redhat/commit/2b462b6))
+
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/nodeshift-starters/nodejs-configmap-redhat/compare/v1.2.1...v1.2.2) (2018-04-27)
 
